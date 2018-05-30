@@ -2,16 +2,18 @@
  * 
  */
 package comm;
-
 import io.restassured.RestAssured;
 import io.restassured.http.Cookies;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import net.sf.json.JSONObject;
+import util.ApiCount;
+import util.Dao;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.config.EncoderConfig.encoderConfig;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,17 +33,302 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
-
 /**
  * 封装常用方法
- * @author lenovo
- *
+ * @author fei.zhang
+ * @date 2017年3月27日
  */
 public class RestClient {
 
+	private Dao dao = new Dao();
 	private static List<String> testUrlList = null;
+	ApiCount api = new ApiCount();
 
 	// ----------------------------------------------------------------------------
+
+	public int getApiCount() {
+		if (testUrlList == null) {
+			return 0;
+		}
+		return testUrlList.size();
+	}
+
+	public int getApiCount2() {
+		return api.getApiCount();
+	}
+
+	protected void countTests(String methodUrl, String method) {
+		synchronized (this) {
+			if (testUrlList == null) {
+				testUrlList = new ArrayList<String>();
+			}
+
+			// 判断url是否已经存在
+			String fullUrl = RestAssured.baseURI + methodUrl + method;
+			if (!testUrlList.contains(fullUrl)) {
+				testUrlList.add(fullUrl);
+				// System.out.println(">>>新增: " + fullUrl);
+			}
+		}
+	}
+
+	/**
+	 * MD5  32位小写加密
+	 * @param plain  明文密码
+	 * @return
+	 */
+	public String encryption(String plain) {
+		return MD5.encryption(plain);
+	}
+
+	/**
+	 * AES-128-CBC加密
+	 * @param cSrc  明文密码
+	 * @return
+	 */
+	public String encrypt(String cSrc) {
+		try {
+			return AESUtil.Encrypt(cSrc, "wZTc98PWEMqqCSCs", "0102030405060708");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 执行js function
+	 * @param js  js文件
+	 * @param functionName  js函数名称
+	 * @param paras  js函数参数 
+	 * @return
+	 */
+	public String excuteJs(String js, String functionName, Object... paras) {
+		try {
+			return ExcuteJs.excuteJs(js, functionName, paras);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ScriptException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 读取js openid函数，生成随机openid
+	 * @return
+	 */
+	public String getOpenId() {
+		try {
+			return ExcuteJs.excuteJs("src/test/resources/wechat.js", "openid", "32");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 读取js getNowFormatDate函数，获取当前时间
+	 * @return
+	 */
+	public String getNowFormatDate() {
+		try {
+			return ExcuteJs.excuteJs("src/test/resources/wechat.js", "getNowFormatDate", "0");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 设置请求参数编码为UTF-8
+	 */
+	public void setEnCode() {
+		RestAssured.config = RestAssured.config().encoderConfig(encoderConfig().defaultContentCharset("UTF-8"));
+	}
+
+	/**
+	 * 初始化测试数据（加载xml文件）
+	 */
+	public void initTestData() {
+		// List<TestDataInfo> xmlList = XmlUtils.getUiObject();
+		// CONSTS.uiInfos = xmlList;
+		// if (CONSTS.uiInfos.isEmpty()) {
+		// System.out.println("没有测试数据");
+		// System.exit(1);
+		// }
+		TestData.initTestData();
+	}
+
+	/**
+	 * 从env.properties中读取，设置url前缀
+	 * @param url
+	 */
+	public void setUrl(String url) {
+		RestAssured.baseURI = Config.getProp(url);
+	}
+
+	public void setUrl2(String url) {
+		RestAssured.baseURI = url;
+	}
+
+	/**
+	 * 从env.properties中读取，设置端口号
+	 * @param port
+	 */
+	public void setPort(String port) {
+		RestAssured.port = Integer.valueOf(Config.getProp(port));
+	}
+
+	/**
+	 * @param port
+	 */
+	public void setPort(int port) {
+		RestAssured.port = port;
+	}
+
+	/**
+	 * 从env.properties读取数据
+	 * @param name
+	 * @return
+	 */
+	public String getValueFromEnv(String name) {
+		return Config.getProp(name);
+	}
+
+	/**
+	 * 从env.properties中读取数据
+	 * @param name
+	 * @return  int
+	 */
+	public int getValueFromEnvToInt(String name) {
+		return Integer.valueOf(Config.getProp(name));
+	}
+
+	/**
+	 * 根据xml文件名和标签名读取测试数据 
+	 * @param xmlName
+	 * @param name
+	 * @return
+	 */
+	public String getValueFormXml(String xmlName, String name) {
+		return XmlUtils.getValue(xmlName, name);
+	}
+
+	/**
+	 * 根据标签名读取测试数据
+	 * @param name
+	 * @return
+	 */
+	public String getValueFormXml(String name) {
+		return XmlUtils.getValue(name);
+	}
+
+	/**
+	 * 根据标签名读取测试数据，返回int
+	 * @param name
+	 * @return
+	 */
+	public int getValueFormXmlToInt(String name) {
+		return Integer.valueOf(XmlUtils.getValue(name));
+	}
+
+	/**
+	 * 根据标签名读取测试数据，返回long
+	 * @param name
+	 * @return
+	 */
+	public long getValueFormXmlToLong(String name) {
+		return Long.parseLong(XmlUtils.getValue(name));
+	}
+
+	/**
+	 * 输入sql、列名，从数据库回取字段值(String)
+	 * @param sql
+	 * @param columnName
+	 * @return
+	 */
+	public String selectSqlToStr(String sql, String columnName) {
+		return dao.selectSqlToStr(sql, columnName);
+	}
+
+	public String selectSqlToStr(String sql, String columnName, String dbUrl, String dbUserName, String dbPwd) {
+		return dao.selectSqlToStr2(sql, columnName, dbUrl, dbUserName, dbPwd);
+	}
+
+	/**
+	 * 输入数据库信息、sql、列名，从数据库回取字段值(int)
+	 * @param sql
+	 * @param columnName
+	 * @return
+	 */
+	public int selectSqlToInt(String sql, String columnName) {// columnName是返回数据的字段名
+		return dao.selectSqlToInt(sql, columnName);
+	}
+
+	public int selectSqlToInt(String sql, String columnName, String dbUrl, String dbUserName, String dbPwd) {// columnName是返回数据的字段名
+		return dao.selectSqlToInt2(sql, columnName, dbUrl, dbUserName, dbPwd);
+	}
+
+	/**
+	 * 执行查询sql语句 
+	 * @param sql
+	 * @return  集合
+	 */
+	public ResultSet selectSqlToSet(String sql) {
+		return dao.selectSqlToSet(sql);
+	}
+
+	public ResultSet selectSqlToSet(String sql, String dbUrl, String dbUserName, String dbPwd) {
+		return dao.selectSqlToSet2(sql, dbUrl, dbUserName, dbPwd);
+	}
+
+	/**
+	 * 执行删除sql语句
+	 * @param sql
+	 * @return
+	 */
+	public int deleteSql(String sql) {
+		return dao.deleteSql(sql);
+	}
+
+	public int deleteSql(String sql, String dbUrl, String dbUserName, String dbPwd) {
+		return dao.deleteSql2(sql, dbUrl, dbUserName, dbPwd);
+	}
+
+	/**
+	 * 执行更新语句
+	 * @param sql
+	 * @return
+	 */
+	public int updateSql(String sql) {
+		return dao.updateSql(sql);
+	}
+
+	public int updateSql(String sql, String dbUrl, String dbUserName, String dbPwd) {
+		return dao.updateSql2(sql, dbUrl, dbUserName, dbPwd);
+	}
+
+	public int insertSql(String sql) {
+		return dao.insertSql(sql);
+	}
+
+	public int insertSql(String sql, String dbUrl, String dbUserName, String dbPwd) {
+		return dao.insertSql2(sql, dbUrl, dbUserName, dbPwd);
+	}
 
 	/**
 	 * 打印请求返回体
@@ -56,7 +343,6 @@ public class RestClient {
 		// || response.getContentType().contains("text/html");
 
 		if (response != null && iResult != null) {
-			iResult.setAttribute("baseUri", RestAssured.baseURI);
 			String body = response.body().asString();
 			if (body.length() > 1000) {
 				iResult.setAttribute("realResponse", body.substring(0, 1000));
@@ -949,26 +1235,26 @@ public class RestClient {
 		return response.then().body(path, equalTo(value));
 	}
 
-/*	*//**
+	/**
 	 * 验证jsonSchema是否正确
 	 * @param response
 	 * @param jsonPath
 	 * @return
-	 *//*
+	 */
 	public ValidatableResponse matchesJsonSchema(Response response, String jsonPath) {
 		return response.then().body(matchesJsonSchemaInClasspath(jsonPath));
-	}*/
+	}
 
-/*	*//**
+	/**
 	 * 返回体包含json数组，判断json数组中字段key包含值value
 	 * @param response
 	 * @param path  
 	 * @param key
 	 * @param value
-	 *//*
+	 */
 	public void assertContains(Response response, String path, String key, String value) {
 		Utils.assertContains(response, path, key, value);
-	}*/
+	}
 
 	/**
 	 * 断言请求响应时间小于ms毫秒
@@ -988,13 +1274,13 @@ public class RestClient {
 		return RandomValue.getTel();
 	}
 
-/*	*//**
+	/**
 	 * 将ResultSet转化为JSON数组
 	 * @param rs
 	 * @return
 	 * @throws SQLException
 	 * @throws JSONException
-	 *//*
+	 */
 	public JSONArray resultSetToJsonArry(String sql) throws SQLException, JSONException {
 		return Utils.resultSetToJsonArry(sql);
 	}
@@ -1003,17 +1289,17 @@ public class RestClient {
 			throws SQLException, JSONException {
 		return Utils.resultSetToJsonArry2(sql, dbUrl, dbUserName, dbPwd);
 	}
-*/
-/*	*//**
+
+	/**
 	 * 提取json数组字段key的值到list中
 	 * @param jsonArray
 	 * @param key
 	 * @return
-	 *//*
+	 */
 	public List<String> getArrayFromJsonArray(JSONArray jsonArray, String key) {
 		return Utils.getArrayFromJsonArray(jsonArray, key);
 	}
-*/
+
 	public static void main(String[] args) {
 		RestClient rc = new RestClient();
 

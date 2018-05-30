@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
-  <listeners>
-    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-  </listeners>
-  <test name="Test">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test verbose="2" name="Default test">
     <classes>
-      <class name="util.TestCase"/>
+      <class name="aboutRestAssured.HxAppTest"/>
     </classes>
-  </test> <!-- Test -->
-  <test name="Test(failed)">
+  </test> <!-- Default test -->
+  <test name="Default test(failed)">
     <classes>
-      <class name="util.TestCase">
+      <class name="aboutRestAssured.HxAppTest">
         <methods>
-          <include name="getHuaihua"/>
-          <include name="getHuitong"/>
+          <include name="beforeClass"/>
+          <include name="testDecoration"/>
         </methods>
-      </class> <!-- util.TestCase -->
+      </class> <!-- aboutRestAssured.HxAppTest -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

@@ -6,4 +6,14 @@
       <class name="aboutRestAssured.HxAppTest"/>
     </classes>
   </test> <!-- Default test -->
+  <test name="Default test(failed)">
+    <classes>
+      <class name="aboutRestAssured.HxAppTest">
+        <methods>
+          <include name="beforeClass"/>
+          <include name="testDecoration"/>
+        </methods>
+      </class> <!-- aboutRestAssured.HxAppTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

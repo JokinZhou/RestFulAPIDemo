@@ -3,16 +3,16 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head>
-  <title>Test Results Report - Test</title>
+  <title>Test Results Report - Default test</title>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <meta name="description" content="TestNG unit test results." />
   <link href="reportng.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="reportng.js"></script>
 </head>
 <body>
-<h1>Test</h1>
+<h1>Default test</h1>
 <p>
-  Test duration: 0.510s
+  Test duration: 3.451s
 </p>
 
 
@@ -20,37 +20,24 @@
   <table class="resultsTable">
     <tr><th colspan="3" class="header failed">Failed Tests</th></tr>
           <tr>
-        <td colspan="3" class="group">util.TestCase</td>
+        <td colspan="3" class="group">aboutRestAssured.HxAppTest</td>
       </tr>
             
 <tr>
   <td class="method">
-                  getHuaihua
+                  testDecoration
       </td>
   <td class="duration">
-    0.457s
+    3.031s
   </td>
   <td class="result">
         
     
-            <div class="testOutput">
-                        【正常用例】:获取怀化天气成功!
-                                <p><span style="color:#FF0000">请求地址: http://www.weather.com.cn/data/cityinfo/101251201.html</span></p>
-                                【返回结果】: {"weatherinfo":{"city":"怀化","cityid":"101251201","temp1":"16℃","temp2":"22℃","weather":"阵雨转阴","img1":"n3.gif","img2":"d2.gif","ptime":"18:00"}}
-                                <p>【用例结果】: resultCode=>expected: 怀化 ,actual: null</p>
-                  </div>
-    
+        
 
-        <a href="javascript:toggleElement('exception-0', 'block')" title="Click to expand/collapse"><b>java.lang.AssertionError: expected [怀化] but found [null]</b></a><br />
+        <a href="javascript:toggleElement('exception-0', 'block')" title="Click to expand/collapse"><b>java.lang.NoClassDefFoundError: com/fasterxml/jackson/databind/JsonNode</b></a><br />
     <div class="stackTrace" id="exception-0">
-              org.testng.Assert.fail(Assert.java:94)<br />
-              org.testng.Assert.failNotEquals(Assert.java:513)<br />
-              org.testng.Assert.assertEqualsImpl(Assert.java:130)<br />
-              org.testng.Assert.assertEquals(Assert.java:116)<br />
-              org.testng.Assert.assertEquals(Assert.java:190)<br />
-              org.testng.Assert.assertEquals(Assert.java:200)<br />
-              util.TestCase.resultCheck(TestCase.java:42)<br />
-              util.TestCase.getHuaihua(TestCase.java:20)<br />
+              aboutRestAssured.HxAppTest.testDecoration(HxAppTest.java:58)<br />
               sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br />
               sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)<br />
               sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)<br />
@@ -75,62 +62,42 @@
               org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)<br />
               org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)<br />
               org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)<br />
-                </div>
-      </td>
-</tr>
-<tr>
-  <td class="method">
-                  getHuitong
-      </td>
-  <td class="duration">
-    0.053s
-  </td>
-  <td class="result">
-        
-    
-            <div class="testOutput">
-                        【正常用例】:获取会同天气成功!
-                                <p><span style="color:#FF0000">请求地址: http://www.weather.com.cn/data/cityinfo/101251206.html</span></p>
-                                【返回结果】: {"weatherinfo":{"city":"会同","cityid":"101251206","temp1":"17℃","temp2":"22℃","weather":"中到大雨转小雨","img1":"n22.gif","img2":"d7.gif","ptime":"18:00"}}
-                                <p>【用例结果】: resultCode=>expected: 会同 ,actual: null</p>
+                    <b>Caused by: </b> <a href="javascript:toggleElement('exception-1', 'block')" title="Click to expand/collapse">java.lang.ClassNotFoundException: com.fasterxml.jackson.databind.JsonNode</a><br />
+        <div class="stackTrace" id="exception-1">
+                      java.net.URLClassLoader$1.run(Unknown Source)<br />
+                      java.net.URLClassLoader$1.run(Unknown Source)<br />
+                      java.security.AccessController.doPrivileged(Native Method)<br />
+                      java.net.URLClassLoader.findClass(Unknown Source)<br />
+                      java.lang.ClassLoader.loadClass(Unknown Source)<br />
+                      sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)<br />
+                      java.lang.ClassLoader.loadClass(Unknown Source)<br />
+                      aboutRestAssured.HxAppTest.testDecoration(HxAppTest.java:58)<br />
+                      sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br />
+                      sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)<br />
+                      sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)<br />
+                      java.lang.reflect.Method.invoke(Unknown Source)<br />
+                      org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)<br />
+                      org.testng.internal.Invoker.invokeMethod(Invoker.java:643)<br />
+                      org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)<br />
+                      org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)<br />
+                      org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)<br />
+                      org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)<br />
+                      org.testng.TestRunner.privateRun(TestRunner.java:782)<br />
+                      org.testng.TestRunner.run(TestRunner.java:632)<br />
+                      org.testng.SuiteRunner.runTest(SuiteRunner.java:366)<br />
+                      org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)<br />
+                      org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)<br />
+                      org.testng.SuiteRunner.run(SuiteRunner.java:268)<br />
+                      org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)<br />
+                      org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)<br />
+                      org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)<br />
+                      org.testng.TestNG.runSuitesLocally(TestNG.java:1169)<br />
+                      org.testng.TestNG.run(TestNG.java:1064)<br />
+                      org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)<br />
+                      org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)<br />
+                      org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)<br />
                   </div>
-    
-
-        <a href="javascript:toggleElement('exception-1', 'block')" title="Click to expand/collapse"><b>java.lang.AssertionError: expected [会同] but found [null]</b></a><br />
-    <div class="stackTrace" id="exception-1">
-              org.testng.Assert.fail(Assert.java:94)<br />
-              org.testng.Assert.failNotEquals(Assert.java:513)<br />
-              org.testng.Assert.assertEqualsImpl(Assert.java:130)<br />
-              org.testng.Assert.assertEquals(Assert.java:116)<br />
-              org.testng.Assert.assertEquals(Assert.java:190)<br />
-              org.testng.Assert.assertEquals(Assert.java:200)<br />
-              util.TestCase.resultCheck(TestCase.java:42)<br />
-              util.TestCase.getHuitong(TestCase.java:27)<br />
-              sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br />
-              sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)<br />
-              sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)<br />
-              java.lang.reflect.Method.invoke(Unknown Source)<br />
-              org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)<br />
-              org.testng.internal.Invoker.invokeMethod(Invoker.java:643)<br />
-              org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)<br />
-              org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)<br />
-              org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)<br />
-              org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)<br />
-              org.testng.TestRunner.privateRun(TestRunner.java:782)<br />
-              org.testng.TestRunner.run(TestRunner.java:632)<br />
-              org.testng.SuiteRunner.runTest(SuiteRunner.java:366)<br />
-              org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)<br />
-              org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)<br />
-              org.testng.SuiteRunner.run(SuiteRunner.java:268)<br />
-              org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)<br />
-              org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)<br />
-              org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)<br />
-              org.testng.TestNG.runSuitesLocally(TestNG.java:1169)<br />
-              org.testng.TestNG.run(TestNG.java:1064)<br />
-              org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)<br />
-              org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)<br />
-              org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)<br />
-                </div>
+          </div>
       </td>
 </tr>
       </table>

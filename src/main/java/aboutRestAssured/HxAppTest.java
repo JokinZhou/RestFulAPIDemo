@@ -31,6 +31,9 @@ public class HxAppTest {
 	  RestAssured.port = 80;
 	  }
 	  
+	 /**
+	  * 添加了restfulAssured的断言；但是在testng中 只是一个@test 所以失败任意一个也认为是失败的
+	  */
 	 @Test
 	 public void testDecoration(){
 		 //given().headers(headers).cookies(cookies).post(url);
