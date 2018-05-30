@@ -59,7 +59,7 @@ public class BaseCase {
 	 * @author qin.hua
 	 */
 	@DataProvider(name="providerData",  parallel = true)
-	public Object[][] providerTestData(Method method) {
+	public Object[][] providerTestData(Method method) {//Method 对象参数是调用该DataProvider提供方法的那个，客户方法；
 		//获取@Api的名称,名称必须与写入参数的excel名称一致
 		Api myApi = method.getDeclaringClass().getAnnotation(Api.class);
 		Assert.assertNotNull(myApi, method.getName().toString() + "没有实现api接口");

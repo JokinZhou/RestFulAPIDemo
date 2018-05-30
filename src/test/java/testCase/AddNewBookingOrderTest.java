@@ -23,10 +23,11 @@ import io.restassured.response.Response;
  */
 
 @Api(name = "C-CRM")
+//这个@Api注释给BaseCase类中的DataProvider测试对于excel的文件名
 public class AddNewBookingOrderTest extends BaseCase {
 	@Test(dataProvider = CONST.PROVIDER_DATA, description = "预约提交")
-	public void addNewBookingOrder(Map<String, String> providerParams) {
-		//分析给定的参数
+	public void addNewBookingOrder(Map<String, String> providerParams) {//调用了dataProvider参数注释的方法如：addNewBookingOrder， 可通过Method对象传送给DataProvider提供方法
+		//分析给定的参数 ， 参数是通过dataProvider提供的数据，改方法读取的具体实现在BaseCase类中
 		ParametersSet paramSet = new ParametersSet();
 		paramSet.parseProviderParams(providerParams);
 		
