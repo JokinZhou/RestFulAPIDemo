@@ -40,8 +40,9 @@ public class GetBookingDetailNonDriectionTest extends BaseCase {
 		//分析给定的参数2、解析dataProvider提供的数据，给两个成员变量赋值
 		paramSet.parseProviderParams(providerParams);
 		
-		Reporter.log("url:" + providerParams.get(CONST.URL).toString());
-		// 发送post请求
+/*		Reporter.log("url:" + providerParams.get(CONST.URL).toString());
+		System.out.println(providerParams.get(CONST.URL).toString()+"这是标准的分割线-----------------");*/
+		// 发送请求
 		Response response = rc.httpGet(providerParams.get(CONST.URL).toString(), headers, paramSet.requestParams);
 
 		//验证结果

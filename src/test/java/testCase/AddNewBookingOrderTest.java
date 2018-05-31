@@ -31,6 +31,7 @@ public class AddNewBookingOrderTest extends BaseCase {
 		ParametersSet paramSet = new ParametersSet();
 		paramSet.parseProviderParams(providerParams);
 		
+		System.out.println(providerParams.get(CONST.URL).toString()+"这是标准的分割线-----------------");
 		//发送请求
 		Response response = rc.httpGet(paramSet.verifyParams.get(CONST.URL).toString(), paramSet.requestParams);
 

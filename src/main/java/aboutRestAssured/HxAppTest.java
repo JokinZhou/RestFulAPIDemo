@@ -44,7 +44,10 @@ public class HxAppTest {
 		 body("dataMap.companyId", equalTo(149));
 		 
 		 Response re = given().param("id","149").get("/c/hxapp/decoration/detail");
-		 
+/*		 given().
+	       formParam("formParamName", "value1").//提交表单数据一般在post请求中默认"application/x-www-form-urlencoded"
+	       queryParam("queryParamName", "value2").when().post("/something");
+		 */
 		 //如果是post请求， 那么直接在调用params(Map<String, ?> parametersMap)方法传递一个Map类型作为参数：：params有很多种参数形式
 		 
 		 if(re.getStatusCode()==200){//如果返回值的code是200

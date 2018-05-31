@@ -28,7 +28,7 @@ public class BaseCase {
 	 * 默认构造函数，指定url为为BaseUrl，它在env.properties中配置的是家装线上环境地址
 	 */
 	public BaseCase() {
-		this.url = "BaseUrl";
+		this.url = "baseUrl";
 	}
 
 	/*
@@ -102,8 +102,8 @@ public class BaseCase {
 		//增加对url的统计
 		Assert.assertTrue(list.get(0).containsKey(CONST.URL), sheetName + "中没有url参数配置");
 		//list.get(0).get("url").toString() 获取到excel表格里填写的url地址
-		countTests(list.get(0).get("url").toString());	
-				
+		
+		/*countTests(list.get(0).get("url").toString());	*/
 		int length = list.size();
 		result = new Object[length][1];
 		for(int i = 0; i < list.size(); i++){
@@ -112,7 +112,7 @@ public class BaseCase {
 		return result;
 	}
 	
-	protected void countTests(String methodUrl){
+/*	protected void countTests(String methodUrl){
 		synchronized(this){
 			if(testUrlList == null){
 				testUrlList = new ArrayList<String>();
@@ -125,5 +125,5 @@ public class BaseCase {
 //				System.out.println(">>>新增: " + fullUrl);
 			}
 		}
-	}
+	}*/
 }

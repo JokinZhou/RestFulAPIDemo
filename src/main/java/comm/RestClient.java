@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import javax.script.ScriptException;
 
 import org.testng.Assert;
@@ -175,6 +177,7 @@ public class RestClient {
 
 	/**
 	 * 从env.properties中读取，设置url前缀
+	 * 此处设置了url的前缀，RestAssured.baseURI；后续用RestAssured中的get(url)那么这里的url就是除了前缀以后的接口访问地址
 	 * @param url
 	 */
 	public void setUrl(String url) {
@@ -430,6 +433,12 @@ public class RestClient {
 	 */
 	public Response httpGet(String url, Headers headers, Map<String, ?> params) {
 		// countTests(url, "get");
+		Set<?> ectrySet = params.entrySet();
+		Iterator<?> it= ectrySet.iterator();
+		if(it.hasNext()){
+			System.out.println(it.next());
+			System.out.println("这是标准的分割线----------44444");
+		}
 		Response response = given().headers(headers).params(params).get(url);
 		reportLog(response, url);
 
