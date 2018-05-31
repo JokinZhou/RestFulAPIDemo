@@ -25,10 +25,10 @@ public class BaseCase {
 	
 	
 	/*
-	 * 默认构造函数，指定url为jzUrl
+	 * 默认构造函数，指定url为为BaseUrl，它在env.properties中配置的是家装线上环境地址
 	 */
 	public BaseCase() {
-		this.url = "baseUrl";
+		this.url = "BaseUrl";
 	}
 
 	/*
@@ -61,6 +61,8 @@ public class BaseCase {
 	@DataProvider(name="providerData",  parallel = true)
 	public Object[][] providerTestData(Method method) {//Method 对象参数是调用该DataProvider提供方法的那个，客户方法；
 		//获取@Api的名称,名称必须与写入参数的excel名称一致
+		//反射机制 Methon对象的getDeclaringClass()方法 返回表示声明由此 Method 对象表示的方法的类或接口的 Class 对象
+		//public A getAnnotation(注解名.class)，返回该运行时Class对象的注解类型A（一个注解的类型）
 		Api myApi = method.getDeclaringClass().getAnnotation(Api.class);
 		Assert.assertNotNull(myApi, method.getName().toString() + "没有实现api接口");
 		
@@ -99,7 +101,7 @@ public class BaseCase {
 		Assert.assertNotNull(list, fileName + "中的" + sheetName + "未发现可以使用的数据\n");
 		//增加对url的统计
 		Assert.assertTrue(list.get(0).containsKey(CONST.URL), sheetName + "中没有url参数配置");
-		
+		//list.get(0).get("url").toString() 获取到excel表格里填写的url地址
 		countTests(list.get(0).get("url").toString());	
 				
 		int length = list.size();
@@ -116,7 +118,7 @@ public class BaseCase {
 				testUrlList = new ArrayList<String>();
 			}
 			
-			//判断url是否已经存在
+			//判断url是否已经存在，如果之前不存在就拼接好的 接口地址全称 添加到testUrlList数组列列表中
 			String fullUrl = this.url + methodUrl;
 			if(!testUrlList.contains(fullUrl)){
 				testUrlList.add(fullUrl);

@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/7/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed May 30 16:15:03 CST 2018</td>
+<td>Started on:</td><td>Thu May 31 16:30:48 CST 2018</td>
 </tr>
-<tr><td>Total time:</td><td>3 seconds (3468 ms)</td>
+<tr><td>Total time:</td><td>3 seconds (3678 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -75,9 +75,24 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='aboutRestAssured.HxAppTest.testDecoration()'><b>testDecoration</b><br>Test class: aboutRestAssured.HxAppTest</td>
-<td><div><pre>java.lang.NoClassDefFoundError: com/fasterxml/jackson/databind/JsonNode
-	at aboutRestAssured.HxAppTest.testDecoration(HxAppTest.java:58)
+<td title='testCase.AddNewBookingOrderTest.addNewBookingOrder()'><b>addNewBookingOrder</b><br>Test class: testCase.AddNewBookingOrderTest<br>Test method: 预约提交<br>Parameters: {districtCode=310101, expectResult=, userRealname=李四, provinceCode=310000, userMobile=15021874195, cityCode=oo, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535, url=/c/designerBooking/v2/addNew, testName=无效cityCode}<br/>
+<a href="#Output-1741768453" onClick='toggleBox("Output-1741768453", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1741768453" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1741768453">
+url: /c/designerBooking/v2/addNew<br/>
+请求参数: {districtCode=310101, userRealname=李四, provinceCode=310000, userMobile=15021874195, cityCode=oo, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535}<br/>
+/c/designerBooking/v2/addNew返回： {"timestamp":1527755452142,"status":404,"error":"Not Found","message":"No message available","path":"/c/designerBooking/v2/addNew"}<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -85,35 +100,23 @@ function toggleAllBoxes() {
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
 	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
 	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:782)
-	at org.testng.TestRunner.run(TestRunner.java:632)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
-	at org.testng.TestNG.run(TestNG.java:1064)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
-Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.databind.JsonNode
-	at java.net.URLClassLoader$1.run(Unknown Source)
-	at java.net.URLClassLoader$1.run(Unknown Source)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.net.URLClassLoader.findClass(Unknown Source)
-	at java.lang.ClassLoader.loadClass(Unknown Source)
-	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
-	at java.lang.ClassLoader.loadClass(Unknown Source)
-	... 25 more
-</pre></div><a href='#' onClick='toggleBox("stack-trace26357357", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace26357357'><pre>java.lang.NoClassDefFoundError: com/fasterxml/jackson/databind/JsonNode
-	at aboutRestAssured.HxAppTest.testDecoration(HxAppTest.java:58)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1741768453", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1741768453'><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -121,35 +124,383 @@ Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.databind.Json
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
 	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
 	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:782)
-	at org.testng.TestRunner.run(TestRunner.java:632)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
-	at org.testng.TestNG.run(TestNG.java:1064)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
-Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.databind.JsonNode
-	at java.net.URLClassLoader$1.run(Unknown Source)
-	at java.net.URLClassLoader$1.run(Unknown Source)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.net.URLClassLoader.findClass(Unknown Source)
-	at java.lang.ClassLoader.loadClass(Unknown Source)
-	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
-	at java.lang.ClassLoader.loadClass(Unknown Source)
-	... 25 more
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
 </pre></div></td>
-<td>3</td>
-<td>aboutRestAssured.HxAppTest@5d76b067</td></tr>
+<td>2</td>
+<td>testCase.AddNewBookingOrderTest@694e1548</td></tr>
+<tr>
+<td title='testCase.AddNewBookingOrderTest.addNewBookingOrder()'><b>addNewBookingOrder</b><br>Test class: testCase.AddNewBookingOrderTest<br>Test method: 预约提交<br>Parameters: {districtCode=aa, expectResult=, userRealname=张三, provinceCode=310000, userMobile=15021874195, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535, url=/c/designerBooking/v2/addNew, testName=无效districtCode}<br/>
+<a href="#Output-610554704" onClick='toggleBox("Output-610554704", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-610554704" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-610554704">
+url: /c/designerBooking/v2/addNew<br/>
+请求参数: {districtCode=aa, userRealname=张三, provinceCode=310000, userMobile=15021874195, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535}<br/>
+/c/designerBooking/v2/addNew返回： {"timestamp":1527755452161,"status":404,"error":"Not Found","message":"No message available","path":"/c/designerBooking/v2/addNew"}<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div><a href='#' onClick='toggleBox("stack-trace610554704", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace610554704'><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>2</td>
+<td>testCase.AddNewBookingOrderTest@694e1548</td></tr>
+<tr>
+<td title='testCase.AddNewBookingOrderTest.addNewBookingOrder()'><b>addNewBookingOrder</b><br>Test class: testCase.AddNewBookingOrderTest<br>Test method: 预约提交<br>Parameters: {districtCode=310101, expectResult=, userRealname=李四, provinceCode=310000, userMobile=150218741k5, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535, url=/c/designerBooking/v2/addNew, testName=无效手机号}<br/>
+<a href="#Output-1675716850" onClick='toggleBox("Output-1675716850", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1675716850" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1675716850">
+url: /c/designerBooking/v2/addNew<br/>
+请求参数: {districtCode=310101, userRealname=李四, provinceCode=310000, userMobile=150218741k5, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535}<br/>
+/c/designerBooking/v2/addNew返回： {"timestamp":1527755452140,"status":404,"error":"Not Found","message":"No message available","path":"/c/designerBooking/v2/addNew"}<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1675716850", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1675716850'><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>2</td>
+<td>testCase.AddNewBookingOrderTest@694e1548</td></tr>
+<tr>
+<td title='testCase.AddNewBookingOrderTest.addNewBookingOrder()'><b>addNewBookingOrder</b><br>Test class: testCase.AddNewBookingOrderTest<br>Test method: 预约提交<br>Parameters: {districtCode=310101, expectResult=, userRealname=李四, provinceCode=aaa, userMobile=150218741k5, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535, url=/c/designerBooking/v2/addNew, testName=无效provinceCode}<br/>
+<a href="#Output-671182277" onClick='toggleBox("Output-671182277", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-671182277" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-671182277">
+url: /c/designerBooking/v2/addNew<br/>
+请求参数: {districtCode=310101, userRealname=李四, provinceCode=aaa, userMobile=150218741k5, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535}<br/>
+/c/designerBooking/v2/addNew返回： {"timestamp":1527755452128,"status":404,"error":"Not Found","message":"No message available","path":"/c/designerBooking/v2/addNew"}<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div><a href='#' onClick='toggleBox("stack-trace671182277", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace671182277'><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>2</td>
+<td>testCase.AddNewBookingOrderTest@694e1548</td></tr>
+<tr>
+<td title='testCase.AddNewBookingOrderTest.addNewBookingOrder()'><b>addNewBookingOrder</b><br>Test class: testCase.AddNewBookingOrderTest<br>Test method: 预约提交<br>Parameters: {districtCode=310101, expectResult={"code":200,"message":"成功","dataMap":"201704281500114983"}, userRealname=张三, provinceCode=310000, userMobile=15021874195, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535, url=/c/designerBooking/v2/addNew, testName=预约}<br/>
+<a href="#Output-1524751703" onClick='toggleBox("Output-1524751703", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1524751703" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1524751703">
+url: /c/designerBooking/v2/addNew<br/>
+请求参数: {districtCode=310101, userRealname=张三, provinceCode=310000, userMobile=15021874195, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535}<br/>
+/c/designerBooking/v2/addNew返回： {"timestamp":1527755452161,"status":404,"error":"Not Found","message":"No message available","path":"/c/designerBooking/v2/addNew"}<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1524751703", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1524751703'><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>2</td>
+<td>testCase.AddNewBookingOrderTest@694e1548</td></tr>
+<tr>
+<td title='testCase.AddNewBookingOrderTest.addNewBookingOrder()'><b>addNewBookingOrder</b><br>Test class: testCase.AddNewBookingOrderTest<br>Test method: 预约提交<br>Parameters: {districtCode=310101, expectResult={"code":200,"message":"成功","dataMap":"201704281500114983"}, extendParam=kkkk, userRealname=张三, provinceCode=310000, userMobile=15021874195, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535, url=/c/designerBooking/v2/addNew, testName=添加冗余参数}<br/>
+<a href="#Output-547305518" onClick='toggleBox("Output-547305518", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-547305518" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-547305518">
+url: /c/designerBooking/v2/addNew<br/>
+请求参数: {districtCode=310101, extendParam=kkkk, userRealname=张三, provinceCode=310000, userMobile=15021874195, cityCode=310100, designerOpenId=f14ea222-bc1c-4dcc-b698-4945a6733535}<br/>
+/c/designerBooking/v2/addNew返回： {"timestamp":1527755452101,"status":404,"error":"Not Found","message":"No message available","path":"/c/designerBooking/v2/addNew"}<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div><a href='#' onClick='toggleBox("stack-trace547305518", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace547305518'><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>2</td>
+<td>testCase.AddNewBookingOrderTest@694e1548</td></tr>
+<tr>
+<td title='testCase.AddNewBookingOrderTest.addNewBookingOrder()'><b>addNewBookingOrder</b><br>Test class: testCase.AddNewBookingOrderTest<br>Test method: 预约提交<br>Parameters: {districtCode=310101, expectResult=, userRealname=李四, provinceCode=310000, userMobile=15021874195, cityCode=310100, designerOpenId=aaaabbbb, url=/c/designerBooking/v2/addNew, testName=无效的designerOpenId}<br/>
+<a href="#Output-1726470140" onClick='toggleBox("Output-1726470140", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1726470140" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1726470140">
+url: /c/designerBooking/v2/addNew<br/>
+请求参数: {districtCode=310101, userRealname=李四, provinceCode=310000, userMobile=15021874195, cityCode=310100, designerOpenId=aaaabbbb}<br/>
+/c/designerBooking/v2/addNew返回： {"timestamp":1527755452120,"status":404,"error":"Not Found","message":"No message available","path":"/c/designerBooking/v2/addNew"}<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1726470140", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1726470140'><pre>java.lang.AssertionError: response返回的statuCode不是200	 expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at comm.ParametersSet.parseResult(ParametersSet.java:133)
+	at testCase.AddNewBookingOrderTest.addNewBookingOrder(AddNewBookingOrderTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>2</td>
+<td>testCase.AddNewBookingOrderTest@694e1548</td></tr>
 </table><p>
 </body>
 </html>

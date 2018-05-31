@@ -44,7 +44,7 @@ public class ParametersSet {
 			// 排除验证结果的参数进入params中
 			switch (entry.getKey().toString()) {
 			case CONST.URL:
-				Assert.assertNotNull(entry.getKey(), "url不能为null \t");
+				Assert.assertNotNull(entry.getKey(), "表格中url栏获取的内容结果不能为null，map中没key值也就没value \t");
 				Reporter.log("url: " + entry.getValue());
 			case CONST.TEST_NAME:
 			case CONST.SQL_CHECK:

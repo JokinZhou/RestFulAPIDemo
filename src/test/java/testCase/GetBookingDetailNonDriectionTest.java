@@ -35,8 +35,9 @@ public class GetBookingDetailNonDriectionTest extends BaseCase {
 
 	@Test(description = "预约详情接口-非定向", dataProvider = CONST.PROVIDER_DATA)
 	public void getBookingDetailNonDirection(Map<String, String> providerParams) {
-		//分析给定的参数
+		//分析给定的参数1、初始化一个ParametersSet对象，里面有两个成员变量requestParams请求参数，和verifyParams预期结果
 		ParametersSet paramSet = new ParametersSet();
+		//分析给定的参数2、解析dataProvider提供的数据，给两个成员变量赋值
 		paramSet.parseProviderParams(providerParams);
 		
 		Reporter.log("url:" + providerParams.get(CONST.URL).toString());
