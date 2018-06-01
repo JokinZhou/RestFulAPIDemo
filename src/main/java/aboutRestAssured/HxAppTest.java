@@ -15,7 +15,10 @@ import java.util.Map;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.alibaba.fastjson.JSONObject;
+
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
@@ -44,6 +47,23 @@ public class HxAppTest {
 		 body("dataMap.companyId", equalTo(149));
 		 
 		 Response re = given().param("id","149").get("/c/hxapp/decoration/detail");
+/*		 System.out.println(re.getBody().asString());
+		 System.out.println("我是标准分割线----------------------");
+		 System.out.println(re.getBody().toString());*/
+		 //使用RestAssured 解析数据
+		 String id = re.getBody().jsonPath().getString("dataMap.companyId");
+		 System.out.println("我是公司ID----------------------" + id);
+		 String guanggao = re.getBody().jsonPath().getString("dataMap.activityBanners");
+		 System.out.println("我是公司广告----------------------" + guanggao);
+		 System.out.println("我是标准分割线----------------------");
+		 //使用alibaba的 fastJson解析
+		 JSONObject jsonObject = JSONObject.parseObject(re.getBody().asString());
+		 String message = jsonObject.getString("message");
+		 System.out.println("我是请求信息----------------------" + message);
+		 JSONObject jsonObjectDataMap = jsonObject.getJSONObject("dataMap");
+		 String companyId = jsonObjectDataMap.getString("companyId");
+		 System.out.println("我是公司ID----------------------" + companyId);
+		 
 /*		 given().
 	       formParam("formParamName", "value1").//提交表单数据一般在post请求中默认"application/x-www-form-urlencoded"
 	       queryParam("queryParamName", "value2").when().post("/something");
@@ -51,7 +71,7 @@ public class HxAppTest {
 		 //如果是post请求， 那么直接在调用params(Map<String, ?> parametersMap)方法传递一个Map类型作为参数：：params有很多种参数形式
 		 
 		 if(re.getStatusCode()==200){//如果返回值的code是200
-			 re.print();
+			 re.print();//String类型输出
 			 System.out.println("我是标准分割线----------------------");
 			 re.getBody().prettyPrint();//格式化打印JSON数据
 		 }
@@ -61,7 +81,7 @@ public class HxAppTest {
 		 ValidatableResponse vr = re.then();
 		 //matchesJsonSchemaInClasspath 静态导入自 io.restassured.module.jsv.JsonSchemaValidator
 		 //products-schema.json参数是指 放在classPath路径下的products-schema.json；此处可以放在直接放在src/main/resources目录下
-		 get("/products").then().assertThat().body(matchesJsonSchemaInClasspath("products-schema.json"));
+		// get("/products").then().assertThat().body(matchesJsonSchemaInClasspath("products-schema.json"));
 		 
 		 
 /*		 //XML响应体也可以验证为一个XML Schema (XSD)或DTD
